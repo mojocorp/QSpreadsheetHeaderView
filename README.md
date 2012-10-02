@@ -1,4 +1,5 @@
 ## Description
+
 [![Build Status](https://secure.travis-ci.org/mojocorp/QSpreadsheetHeaderView.png)](http://travis-ci.org/mojocorp/QSpreadsheetHeaderView)
 
 The QSpreadsheetHeaderView class is a special header for QTableView that mimic Google Spreadsheet header.
