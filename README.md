@@ -2,13 +2,13 @@
 
 [![Build Status](https://secure.travis-ci.org/mojocorp/QSpreadsheetHeaderView.png)](http://travis-ci.org/mojocorp/QSpreadsheetHeaderView)
 
-The QSpreadsheetHeaderView class is a special header for QTableView that mimic Google Spreadsheet header.
+The QSpreadsheetHeaderView class is a special QHeaderView that mimic Google Spreadsheet header.
 
-A button with a context menu...
-<img src="https://raw.github.com/mojocorp/QSpreadsheetHeaderView/master/screen-capture-1.jpg" >
+It means:
+* A button with a context menu to hide/sort colums.
+* Indicators for hidden columns. Clicking on it restore the column visibility.
 
-And buttons/indicators for hidden columns. Clicking on it restore the column visibility.
-<img src="https://raw.github.com/mojocorp/QSpreadsheetHeaderView/master/screen-capture-2.jpg" >
+<img src="https://raw.github.com/mojocorp/QSpreadsheetHeaderView/master/screen-capture.png" >
 
 ## How to use it ?
 
