@@ -48,7 +48,7 @@ void QSpreadsheetHeaderView::mousePressEvent ( QMouseEvent * event )
 
         if (res == hideCol) {
             hideSection(logicalIndex);
-            update();
+            updateSection(logicalIndex-1);
         }
         if (res == sortAZ)
             model()->sort(logicalIndex, Qt::AscendingOrder);
@@ -58,10 +58,12 @@ void QSpreadsheetHeaderView::mousePressEvent ( QMouseEvent * event )
 
     if (prevRect(logicalIndex).contains(event->pos())) {
         showSection(logicalIndex - 1);
+        updateSection(logicalIndex - 2);
     }
 
     if (nextRect(logicalIndex).contains(event->pos())) {
         showSection(logicalIndex + 1);
+        updateSection(logicalIndex + 2);
     }
 }
 
@@ -146,7 +148,7 @@ void QSpreadsheetHeaderView::drawPrevButton(QPainter *painter, int logicalIndex)
     painter->drawLine(rect.left()+1, rect.center().y() - 3, rect.left()+1, rect.center().y() + 3);
     painter->drawLine(rect.left()+2, rect.center().y() - 2, rect.left()+2, rect.center().y() + 2);
     painter->drawLine(rect.left()+3, rect.center().y() - 1, rect.left()+3, rect.center().y() + 1);
-    painter->drawLine(rect.left()+4, rect.center().y() - 0, rect.left()+4, rect.center().y() + 0);
+    painter->drawPoint(rect.left()+4, rect.center().y());
 }
 
 void QSpreadsheetHeaderView::drawNextButton(QPainter *painter, int logicalIndex) const
@@ -157,5 +159,5 @@ void QSpreadsheetHeaderView::drawNextButton(QPainter *painter, int logicalIndex)
     painter->drawLine(rect.right()-2, rect.center().y() - 3, rect.right()-2, rect.center().y() + 3);
     painter->drawLine(rect.right()-3, rect.center().y() - 2, rect.right()-3, rect.center().y() + 2);
     painter->drawLine(rect.right()-4, rect.center().y() - 1, rect.right()-4, rect.center().y() + 1);
-    painter->drawLine(rect.right()-5, rect.center().y() - 0, rect.right()-5, rect.center().y() + 0);
+    painter->drawPoint(rect.right()-5, rect.center().y());
 }
