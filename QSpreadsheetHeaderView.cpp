@@ -29,6 +29,7 @@
 QSpreadsheetHeaderView::QSpreadsheetHeaderView(Qt::Orientation orientation, QWidget * parent)
     : QHeaderView(orientation, parent)
 {
+    // Required to refresh button menu when the mouse leave the header.
     setAttribute(Qt::WA_Hover, true);
 }
 
@@ -56,15 +57,26 @@ void QSpreadsheetHeaderView::mousePressEvent ( QMouseEvent * event )
             model()->sort(logicalIndex, Qt::DescendingOrder);
     }
 
+    // Catch previous arrow mouse click.
     if (prevRect(logicalIndex).contains(event->pos())) {
         showSection(logicalIndex - 1);
         updateSection(logicalIndex - 2);
     }
 
+    // Catch next arrow mouse click.
     if (nextRect(logicalIndex).contains(event->pos())) {
         showSection(logicalIndex + 1);
         updateSection(logicalIndex + 2);
     }
+}
+
+void QSpreadsheetHeaderView::mouseMoveEvent(QMouseEvent * event)
+{
+    QHeaderView::mouseMoveEvent(event);
+
+    // Required to refresh the button menu enable/disable state.
+    int logicalIndex = logicalIndexAt(event->pos());
+    updateSection(logicalIndex);
 }
 
 void QSpreadsheetHeaderView::paintSection(QPainter *painter, const QRect &rect, int logicalIndex) const
@@ -87,10 +99,9 @@ void QSpreadsheetHeaderView::paintSection(QPainter *painter, const QRect &rect, 
     }
 
     QPoint pos = mapFromGlobal(QCursor::pos());
-    if (!rect.contains(pos))
-        return;
-
-    drawMenuButton(painter, logicalIndex);
+    if (rect.contains(pos)) {
+        drawMenuButton(painter, logicalIndex, buttonMenuRect(logicalIndex).contains(pos));
+    }
 }
 
 QRect QSpreadsheetHeaderView::sectionRect(int logicalIndex) const
@@ -125,15 +136,15 @@ QRect QSpreadsheetHeaderView::nextRect(int logicalIndex) const
     return QRect(sr.right() - 13, sr.center().y() - 6, 13, 13);
 }
 
-void QSpreadsheetHeaderView::drawMenuButton(QPainter *painter, int logicalIndex) const
+void QSpreadsheetHeaderView::drawMenuButton(QPainter *painter, int logicalIndex, bool enabled) const
 {
     QRect brect = buttonMenuRect(logicalIndex);
 
-    painter->setPen(QColor(186,186,186));
+    painter->setPen(enabled ? QColor(186,186,186) : QColor(223, 223, 223));
     painter->setBrush(QColor(246,246,246));
     painter->drawRect(brect.adjusted(0,0,-1,-1));
 
-    painter->setPen(QColor(71,71,71));
+    painter->setPen(enabled ? QColor(71,71,71) : QColor(193, 193, 193));
     painter->drawLine(brect.left()+3, brect.top()+5, brect.right()-3, brect.top()+5);
     painter->drawLine(brect.left()+4, brect.top()+6, brect.right()-4, brect.top()+6);
     painter->drawLine(brect.left()+5, brect.top()+7, brect.right()-5, brect.top()+7);
