@@ -45,6 +45,10 @@ void QSpreadsheetHeaderView::mousePressEvent ( QMouseEvent * event )
         QAction *sortAZ = menu.addAction("Sort sheet A->Z");
         QAction *sortZA = menu.addAction("Sort sheet Z->A");
 
+        // Disable hide column if only one column remains. Otherwise
+        // the gui is no more available to show them back.
+        hideCol->setEnabled(hiddenSectionCount() < count() - 1);
+
         QAction *res = menu.exec(mapToGlobal(event->pos()));
 
         if (res == hideCol) {
