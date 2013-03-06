@@ -64,6 +64,8 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
 
     if (orientation == Qt::Horizontal) {
         return header[section];
+    } else {
+        return section+1;
     }
     return QVariant();
 }
