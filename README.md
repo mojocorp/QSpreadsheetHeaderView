@@ -22,4 +22,4 @@ Qt 4.4.x.
 
 ## License
 
-LGPL
+MIT
