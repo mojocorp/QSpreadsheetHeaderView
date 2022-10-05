@@ -18,7 +18,7 @@ It means:
     tableView->setHorizontalHeader(header);
 
 ## Dependency
-Qt 4.4.x.
+Qt5 or Qt6
 
 ## License
 
