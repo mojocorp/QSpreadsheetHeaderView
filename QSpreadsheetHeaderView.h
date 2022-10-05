@@ -5,7 +5,8 @@
 
 /*!
     \class QSpreadsheetHeaderView
-    \brief The QSpreadsheetHeaderView class is a special QHeaderView that mimic Google Spreadsheet header.
+    \brief The QSpreadsheetHeaderView class is a special QHeaderView
+            that mimics Google Spreadsheet header.
     version 1.0
     \sa QHeaderView
 */

@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
 MainWindow::MainWindow()
 {
     QSpreadsheetHeaderView *hv = new QSpreadsheetHeaderView(Qt::Horizontal, this);
-    hv->setClickable(true);
     hv->setHighlightSections(true);
     TableModel *model = new TableModel(this);
     QTableView *tv = new QTableView(this);
