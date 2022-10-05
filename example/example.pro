@@ -1,5 +1,6 @@
+QT += core gui widgets
 TEMPLATE = app
-TARGET = 
+TARGET = QSpreadsheetHeaderView
 DEPENDPATH += .
 INCLUDEPATH += . ..
 
